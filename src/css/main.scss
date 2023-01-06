@@ -1,0 +1,99 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  background-color: rgb(43, 43, 83);
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 15vh;
+  & img {
+    height: 15vh;
+    align-content: flex-start;
+  }
+  & h1 {
+    align-content: center;
+  }
+}
+.errorlabel {
+  display: none;
+}
+.auth {
+  & h2 {
+    text-align: center;
+    margin-top: 5vh;
+    color: rgb(253, 6, 105);
+  }
+}
+.register {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: none;
+  & form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & label {
+      margin-top: 2rem;
+    }
+    & input {
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+    }
+    & button {
+      margin-top: 2rem;
+      background-color: rgb(253, 6, 105);
+      padding: 0.5rem 1rem;
+      color: white;
+      border-radius: 1rem;
+      cursor: pointer;
+    }
+  }
+}
+.login {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & label {
+      margin-top: 2rem;
+    }
+    & input {
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+    }
+    & button {
+      margin-top: 2rem;
+      background-color: rgb(253, 6, 105);
+      padding: 0.5rem 1rem;
+      color: white;
+      border-radius: 1rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.login-to-register {
+  color: rgb(253, 6, 105);
+  cursor: pointer;
+}
+
+.backArrow {
+  fill: rgb(253, 6, 105);
+  cursor: pointer;
+}

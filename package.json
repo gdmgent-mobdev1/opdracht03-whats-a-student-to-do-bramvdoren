@@ -7,10 +7,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "git:update" : "git add . && git commit -m [WIP] && git push",
-    "git:build" : "tsc && vite build && git add . && git commit -m [WIP] && git push"
+    "git:update": "git add . && git commit -m [WIP] && git push",
+    "git:build": "tsc && vite build && git add . && git commit -m [WIP] && git push"
   },
   "devDependencies": {
+    "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.29.0",
@@ -21,5 +22,11 @@
     "eslint-plugin-promise": "^6.1.1",
     "typescript": "^4.9.4",
     "vite": "^4.0.0"
+  },
+  "dependencies": {
+    "bem": "^2.0.0",
+    "firebase": "^9.15.0",
+    "sass": "^1.57.1",
+    "uuid": "^9.0.0"
   }
 }

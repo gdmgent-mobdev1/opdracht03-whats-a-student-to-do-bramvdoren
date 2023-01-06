@@ -2,12 +2,68 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="./logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>What's a Student to Do?</title>
+    <link rel="stylesheet" href="./src/css/main.scss">
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="app">
+      <header>
+        <img src="./logo.svg" alt="logo">
+        <!-- <h1 class="title">STODO</h1> -->
+      </header>
+      <div class="auth">
+        <h2>Welkom bij uw ToDo app!</h2>
+        <div class="login">
+          <h3>Log hier in.</h3>
+          <form class="login__form">
+            <label for="loginEmail">Email</label>
+            <input type="email" name="email" id="loginEmail"/>
+            <div id="errorEmail" class="errorlabel">Error message</div>
+            <label for="loginPassword">Password</label>
+            <input type="password" name="password" id="loginPassword" />
+            <div id="errorPassword" class="errorlabel">Error message</div>
+            <div id="divLoginError" class="groep">
+              <div id="errorMessage" class="errorlabel">Error message</div>
+            </div>
+            <button id="btnLogin" type="button">Log in</button>
+            <div id="loginGoogle">
+              <button id="btnGoogle" type="button">Log in met Google</button>
+            </div>
+          </form>
+          <p>Nog geen account?</p>
+          <p class="login-to-register">Registreer hier.</p>
+        </div>
+        <div class="register">
+          <div class="backArrow" id="backLogin">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18.634" height="30.704" viewBox="0 0 18.634 30.704">
+              <path id="Icon_awesome-chevron-left" data-name="Icon awesome-chevron-left" d="M2.427,16.807,16.092,3.142a1.688,1.688,0,0,1,2.386,0l1.594,1.594a1.688,1.688,0,0,1,0,2.384L9.245,18l10.83,10.881a1.687,1.687,0,0,1,0,2.384l-1.594,1.594a1.688,1.688,0,0,1-2.386,0L2.427,19.193A1.688,1.688,0,0,1,2.427,16.807Z" transform="translate(-1.933 -2.648)"/>
+            </svg>
+          </div>
+          <h3>Registreer hier.</h3>
+          <form class="register__form">
+            <label for="signupEmail">Email</label>
+            <input type="email" name="email" id="signupEmail" />
+            <div id="errorEmailRegister" class="errorlabel">Error message</div>
+            <label for="signupPassword">Password</label>
+            <input type="password" name="password" id="signupPassword" />
+            <div id="errorPasswordRegister" class="errorlabel">Error message</div>
+            <div id="divRegisterError" class="groep">
+              <div id="errorMessage" class="errorlabel">Error message</div>
+            </div>
+            <button id="btnSignup" type="button">Registreer</button>
+          </form>
+        </div>
+      </div>
+      <div class="application">
+        <div class="home"></div>
+        <div class="profiel">
+          <div class="authState"></div>
+          <button id="btnLogout" type="button" class="button buttonBlue">Log out</button>
+        </div>
+      </div>
+    </div>
+    <script defer type="module" src="/src/main.ts"></script>
   </body>
 </html>
