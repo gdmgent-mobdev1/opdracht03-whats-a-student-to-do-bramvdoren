@@ -39,15 +39,20 @@ export default class Card {
 
   id: string;
 
-  constructor(text: string, place: HTMLElement, todoList: TodoList) {
+  parentId: string;
+
+  // eslint-disable-next-line max-len
+  constructor(title: string, place: HTMLElement, todoList: TodoList, id : string, parentId : string) {
     this.id = uuidv4();
     this.place = place;
     this.todoList = todoList;
     this.state = {
-      text,
+      id,
+      title,
       description: 'Klik voor beschrijving,deadline...',
       comments: [],
     };
+    this.parentId = parentId;
     this.render();
   }
 
@@ -66,7 +71,7 @@ export default class Card {
     this.card.addEventListener('dragstart', dragstartHandler);
 
     this.p = document.createElement('p');
-    this.p.innerText = this.state.text;
+    this.p.innerText = this.state.title;
     this.p.classList.add('card__title');
 
     this.deleteButton = document.createElement('button');
@@ -137,7 +142,7 @@ export default class Card {
     this.place.append(this.subtaakContainer);
 
     this.editableDescription = new EditableText(this.state.description, this.subtaakDescription, this, 'description', 'textarea');
-    this.editableTitle = new EditableText(this.state.text, this.subtaakTitle, this, 'text', 'input');
+    this.editableTitle = new EditableText(this.state.title, this.subtaakTitle, this, 'title', 'input');
 
     this.renderComments();
   }

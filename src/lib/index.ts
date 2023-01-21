@@ -1,5 +1,6 @@
 const root = document.getElementById('app') as HTMLElement;
 interface State {
+  // text: string;
   id: string,
   title: string
   description: string

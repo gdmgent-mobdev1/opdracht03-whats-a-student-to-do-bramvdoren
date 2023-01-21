@@ -69,9 +69,9 @@ export default class EditableText {
       if (this.property === 'description' && (this.input != null)) {
         this.card.state.description = this.input.value;
       }
-      if (this.property === 'text' && (this.input != null) && (this.card.p != null)) {
+      if (this.property === 'title' && (this.input != null) && (this.card.p != null)) {
         this.card.p.innerText = this.input.value;
-        this.card.state.text = this.input.value;
+        this.card.state.title = this.input.value;
       }
       this.div?.remove();
       this.render();

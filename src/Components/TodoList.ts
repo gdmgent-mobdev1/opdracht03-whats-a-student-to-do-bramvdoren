@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { addTodoFirebase, deleteTodoListFirebase } from '../lib/firebaseToDo';
 import { dragoverHandler, dropHandler } from '../Lib/dragAndDrop';
 // import { addTodoFirebase, deleteTodoListFirebase } from '../lib/firebase-init';
@@ -7,6 +6,7 @@ import Card from './Card';
 
 export default class TodoList {
   [x: string]: any;
+
   place: HTMLElement;
 
   title: string;

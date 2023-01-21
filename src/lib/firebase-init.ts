@@ -235,25 +235,25 @@ const loginEmailPassword = async () => {
 // Login met Google
 const loginGoogle = async () => {
   const provider = new GoogleAuthProvider();
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential : any = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result;
-      // ...
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      console.log(`There was an error: ${error}`);
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-    });
+  signInWithPopup(auth, provider);
+  // .then((result) => {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  // const credential : any = GoogleAuthProvider.credentialFromResult(result);
+  // const token = credential.accessToken;
+  // // The signed-in user info.
+  // const user = result;
+  // ...
+  // })
+  // .catch((error) => {
+  //   // Handle Errors here.
+  //   console.log(`There was an error: ${error}`);
+  // const errorCode = error.code;
+  // const errorMessage = error.message;
+  // // The email of the user's account used.
+  // const email = error.customData;
+  // // The AuthCredential type that was used.
+  // const credential = GoogleAuthProvider.credentialFromError(error);
+  // });
 };
 
 // Log out
