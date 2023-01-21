@@ -15,9 +15,9 @@ class HomeComponent extends Component {
     });
   }
 
-  incrementCounter() {
-    this.model.counter += 1;
-  }
+  // incrementCounter() {
+  //   this.model.counter += 1;
+  // }
 
   render() {
     // create a home container
