@@ -6,6 +6,7 @@ import { dragoverHandler, dropHandler } from '../Lib/dragAndDrop';
 import Card from './Card';
 
 export default class TodoList {
+  [x: string]: any;
   place: HTMLElement;
 
   title: string;
@@ -47,6 +48,11 @@ export default class TodoList {
     this.createToDoListElement();
     if (this.todoListElement instanceof HTMLElement) {
       this.todoListElement.addEventListener('drop', dropHandler);
+      // this.todoListElement.addEventListener('click', () => {
+      //   if (this.todoListElement.class = '') {
+
+      //   }
+      // });
       this.todoListElement.addEventListener('dragover', dragoverHandler);
       this.place.append(this.todoListElement);
       const home = document.querySelector('.home')!;
@@ -60,7 +66,7 @@ export default class TodoList {
     this.h2.innerText = this.title;
     this.input = document.createElement('input');
     this.input.classList.add('comment');
-    this.input.placeholder = 'Voeg opdracht toe';
+    this.input.placeholder = 'opdracht/taak';
     this.button = document.createElement('button');
     this.button.innerText = '+';
     this.button.classList.add('btn-save');
@@ -71,6 +77,8 @@ export default class TodoList {
     this.deleteButton.innerHTML = 'x';
     this.todoListElement = document.createElement('div');
     this.todoListElement.id = this.id;
+    this.todoListElement.classList.add('todoList');
+
     // Add Event listener
     this.button.addEventListener('click', () => {
       if ((this.input !== null) && this.input?.value !== '') {
@@ -89,6 +97,5 @@ export default class TodoList {
     this.todoListElement.append(this.button);
     this.todoListElement.append(this.div);
     this.todoListElement.append(this.deleteButton);
-    this.todoListElement.classList.add('todoList');
   }
 }

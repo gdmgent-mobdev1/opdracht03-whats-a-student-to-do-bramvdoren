@@ -21,6 +21,7 @@ import {
   collection,
   addDoc,
   // setDoc,
+  getCountFromServer,
 } from 'firebase/firestore';
 
 // FIREBASE
@@ -168,8 +169,22 @@ const showRegisterError = (error : any) => {
 };
 
 const authState : HTMLElement | any = document.querySelector('.authState');
-const showLoginState = (user : any) => {
-  authState.innerHTML = `Ingelogd als ${user.displayName}`;
+const showLoginState = async (user : any) => {
+  const naam = document.createElement('p') as HTMLElement;
+  naam.innerHTML = `${user.displayName}`;
+  naam.style.fontWeight = 'bold';
+  const email = document.createElement('p') as HTMLElement;
+  email.innerHTML = `Email: ${user.email}`;
+  const projecten = collection(db, 'projects');
+  const snapshot = await getCountFromServer(projecten);
+  console.log('count: ', snapshot.data().count);
+  const aantalProjecten = document.createElement('p') as HTMLElement;
+  aantalProjecten.innerHTML = `Deelnemende projecten: ${snapshot.data().count}`;
+  authState.append(naam);
+  authState.append(email);
+  authState.append(aantalProjecten);
+
+  // TIMER PROJECTEN
 };
 
 // AUTH
@@ -238,7 +253,6 @@ const loginGoogle = async () => {
       const email = error.customData;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
     });
 };
 

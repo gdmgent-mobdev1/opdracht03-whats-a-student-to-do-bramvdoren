@@ -41,7 +41,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
 const addTodoListFirebase = async (title: string) => {
-  const docRef = await addDoc(collection(db, 'lists'), {
+  const docRef = await addDoc(collection(db, 'projects'), {
     title,
   });
   console.log('Document written with ID: ', docRef.id);
@@ -58,7 +58,7 @@ addTodoListButton.addEventListener('click', async () => {
 });
 
 const getCards = async (id: string) => {
-  const cardsSnapShot = collection(db, `lists/${id}/cards`);
+  const cardsSnapShot = collection(db, `projects/${id}/taken`);
   const qSnap = await getDocs(cardsSnapShot);
   return qSnap.docs.map((d) => (
     {
@@ -82,7 +82,7 @@ const createTodoList = ({ id, cards, title }: { id: string; cards: State[], titl
 
 // select collection
 // We willen nu referen naar onze collectie `owl-statues`
-const colRef = collection(db, 'lists');
+const colRef = collection(db, 'projects');
 // get data
 onSnapshot(colRef, (snapshot) => {
   snapshot.docChanges().forEach(async (change) => {

@@ -23,7 +23,7 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const db = getFirestore(firebaseApp);
 
 export const addTodoFirebase = async (text: string, todoId: string) => {
-  const cardsSnapShot = collection(db, `lists/${todoId}/cards`);
+  const cardsSnapShot = collection(db, `projects/${todoId}/taken`);
 
   const docRef = await addDoc(cardsSnapShot, {
     title: text,
@@ -37,20 +37,20 @@ export const addTodoFirebase = async (text: string, todoId: string) => {
 export const updateTodoFirebase = async (todoListId: string, id: string, attribute: string, value: string) => {
   console.log(todoListId, id, attribute, value);
   if (attribute === 'title') {
-    await setDoc(doc(db, `lists/${todoListId}/cards`, id), {
+    await setDoc(doc(db, `projects/${todoListId}/taken`, id), {
       title: value,
     }, { merge: true });
   } else {
-    await setDoc(doc(db, `lists/${todoListId}/cards`, id), {
+    await setDoc(doc(db, `projects/${todoListId}/taken`, id), {
       description: value,
     }, { merge: true });
   }
 };
 
 export const deleteTodoListFirebase = async (id: string) => {
-  await deleteDoc(doc(db, 'lists', id));
+  await deleteDoc(doc(db, 'projects', id));
 };
 
 export const deleteCardFromFirebase = async (todoListId: string, id: string) => {
-  await deleteDoc(doc(db, `lists/${todoListId}/cards`, id));
+  await deleteDoc(doc(db, `projects/${todoListId}/taken`, id));
 };

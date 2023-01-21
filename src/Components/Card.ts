@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { v4 as uuidv4 } from 'uuid';
-import { root, State } from '../Lib';
+import { State } from '../Lib';
 import { dragstartHandler } from '../Lib/dragAndDrop';
 import Comment from './Comment';
 import EditableText from './EditableText';
@@ -13,7 +13,7 @@ export default class Card {
 
   state: State;
 
-  menuContainer?: HTMLElement;
+  subtaakContainer?: HTMLElement;
 
   card?: HTMLDivElement;
 
@@ -21,11 +21,11 @@ export default class Card {
 
   p?: HTMLParagraphElement;
 
-  menu?: HTMLDivElement;
+  subtaak?: HTMLDivElement;
 
-  menuTitle?: HTMLDivElement;
+  subtaakTitle?: HTMLDivElement;
 
-  menuDescription?: HTMLDivElement;
+  subtaakDescription?: HTMLDivElement;
 
   commentsInput?: HTMLInputElement;
 
@@ -45,7 +45,7 @@ export default class Card {
     this.todoList = todoList;
     this.state = {
       text,
-      description: 'Click to write a description...',
+      description: 'Klik voor beschrijving,deadline...',
       comments: [],
     };
     this.render();
@@ -91,31 +91,31 @@ export default class Card {
 
   showMenu(): void {
     // Create elements
-    this.menu = document.createElement('div');
-    this.menuContainer = document.createElement('div');
-    this.menuTitle = document.createElement('div');
-    this.menuDescription = document.createElement('div');
+    this.subtaak = document.createElement('div');
+    this.subtaakContainer = document.createElement('div');
+    this.subtaakTitle = document.createElement('div');
+    this.subtaakDescription = document.createElement('div');
     this.commentsInput = document.createElement('input');
     this.commentsButton = document.createElement('button');
     this.menuComments = document.createElement('div');
 
     // Add class names
-    this.menu.className = 'menu';
-    this.menuContainer.className = 'menuContainer';
-    this.menuTitle.className = 'menuTitle';
-    this.menuDescription.className = 'menuDescription';
+    this.subtaak.className = 'subtaak';
+    this.subtaakContainer.className = 'subtaakContainer';
+    this.subtaakTitle.className = 'subtaakDeadline';
+    this.subtaakDescription.className = 'subtaakDescription';
     this.menuComments.className = 'menuComments';
     this.commentsInput.className = 'commentsInput comment';
     this.commentsButton.className = 'commentsButton btn-save';
 
     // Add inner Text
-    this.commentsButton.innerText = 'Add';
-    this.commentsInput.placeholder = 'Schrijf een opmerking';
+    this.commentsButton.innerText = '+';
+    this.commentsInput.placeholder = 'opmerking/vraag';
 
     // Event listeners
-    this.menuContainer.addEventListener('click', (e: MouseEvent) => {
-      if ((e.target as HTMLElement).classList.contains('menuContainer') && (this.menuContainer != null)) {
-        this.menuContainer?.remove();
+    this.subtaakContainer.addEventListener('click', (e: MouseEvent) => {
+      if ((e.target as HTMLElement).classList.contains('subtaakContainer') && (this.subtaakContainer != null)) {
+        this.subtaakContainer?.remove();
       }
     });
 
@@ -126,18 +126,18 @@ export default class Card {
         this.commentsInput.value = '';
       }
     });
-    const toDoList = document.querySelector('.card')!;
-    // Append
-    this.menu.append(this.menuTitle);
-    this.menu.append(this.menuDescription);
-    this.menu.append(this.commentsInput);
-    this.menu.append(this.commentsButton);
-    this.menu.append(this.menuComments);
-    this.menuContainer.append(this.menu);
-    toDoList.appendChild(this.menuContainer);
 
-    this.editableDescription = new EditableText(this.state.description, this.menuDescription, this, 'description', 'textarea');
-    this.editableTitle = new EditableText(this.state.text, this.menuTitle, this, 'text', 'input');
+    // Append
+    this.subtaak.append(this.subtaakTitle);
+    this.subtaak.append(this.subtaakDescription);
+    this.subtaak.append(this.commentsInput);
+    this.subtaak.append(this.commentsButton);
+    this.subtaak.append(this.menuComments);
+    this.subtaakContainer.append(this.subtaak);
+    this.place.append(this.subtaakContainer);
+
+    this.editableDescription = new EditableText(this.state.description, this.subtaakDescription, this, 'description', 'textarea');
+    this.editableTitle = new EditableText(this.state.text, this.subtaakTitle, this, 'text', 'input');
 
     this.renderComments();
   }
