@@ -54,6 +54,8 @@ export default class Card {
   render(): void {
     this.card = document.createElement('div');
     this.card.classList.add('card');
+    this.card.style.display = 'flex';
+    this.card.style.order = '3';
     this.card.setAttribute('draggable', 'true');
     this.card.id = this.id;
     this.card.addEventListener('click', (e) => {
@@ -76,6 +78,7 @@ export default class Card {
     this.card.append(this.deleteButton);
 
     this.place.append(this.card);
+    this.place.classList.add('opdracht');
   }
 
   deleteCard(): void {
@@ -105,7 +108,7 @@ export default class Card {
 
     // Add inner Text
     this.commentsButton.innerText = 'Add';
-    this.commentsInput.placeholder = 'Write a comment...';
+    this.commentsInput.placeholder = 'Schrijf een opmerking';
 
     // Event listeners
     this.menuContainer.addEventListener('click', (e: MouseEvent) => {
@@ -121,7 +124,7 @@ export default class Card {
         this.commentsInput.value = '';
       }
     });
-
+    const toDoList = document.querySelector('.card')!;
     // Append
     this.menu.append(this.menuTitle);
     this.menu.append(this.menuDescription);
@@ -129,7 +132,7 @@ export default class Card {
     this.menu.append(this.commentsButton);
     this.menu.append(this.menuComments);
     this.menuContainer.append(this.menu);
-    root.append(this.menuContainer);
+    toDoList.appendChild(this.menuContainer);
 
     this.editableDescription = new EditableText(this.state.description, this.menuDescription, this, 'description', 'textarea');
     this.editableTitle = new EditableText(this.state.text, this.menuTitle, this, 'text', 'input');

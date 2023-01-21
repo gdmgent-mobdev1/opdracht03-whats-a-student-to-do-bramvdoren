@@ -16,12 +16,15 @@ header {
   flex-direction: row;
   align-items: center;
   height: 15vh;
+  justify-content: space-between;
   & img {
-    height: 15vh;
+    height: 10vh;
     align-content: flex-start;
+    cursor: pointer;
   }
   & h1 {
     align-content: center;
+    font-size: 1.5rem;
   }
 }
 .errorlabel {
@@ -96,4 +99,113 @@ header {
 .backArrow {
   fill: rgb(253, 6, 105);
   cursor: pointer;
+}
+#addTodoListDiv {
+  & input{
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border-color: lightgray;
+    &:focus {
+      border-color: rgb(253, 6, 105);
+    }
+  }
+  & button {
+    margin-top: 2rem;
+    background-color: rgb(253, 6, 105);
+    padding: 0.2rem 1rem;
+    color: white;
+    border-radius: 1rem;
+    border-color: rgb(253, 6, 105);
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+}
+
+.settings {
+  width: 5vh;
+  margin-right: 4vw;
+}
+
+.todoList {
+  margin-top: 1rem;
+  background: rgba(253, 6, 105, 0.564);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  & input{
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border-color: lightgray;
+    width: 50vw;
+    order: 2;
+  }
+  & .btn-save {
+    background-color: rgb(253, 6, 105);
+    padding: 0.2rem 1rem;
+    color: white;
+    border-radius: 1rem;
+    border-color: rgb(253, 6, 105);
+    cursor: pointer;
+    font-size: 1.2rem;
+    order: 2;
+  }
+  & .delete-btn {
+    background-repeat: no-repeat;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    order: 1;
+    background: rgb(253, 6, 105);
+    color: white;
+    margin-bottom: 1rem;
+  }
+  & h2 {
+    order: 1;
+    width: 70vw;
+    margin-bottom: 1rem;
+  }
+  & .opdracht {
+    display: flex;
+    flex-direction: column;
+    order: 4;
+    width: 80vw;
+    justify-content: space-between;
+    & .card {
+      width: 80vw;
+      background: white;
+      color: black;
+      border: 0.1rem solid;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+
+      & button {
+        display: flex;
+      }
+    }
+  }
+  & .menuContainer {
+    order: 5;
+  }
+}
+
+.profiel {
+  & button {
+    margin-top: 2rem;
+    background-color: rgb(253, 6, 105);
+    padding: 0.2rem 1rem;
+    color: white;
+    border-radius: 1rem;
+    border-color: rgb(253, 6, 105);
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
 }

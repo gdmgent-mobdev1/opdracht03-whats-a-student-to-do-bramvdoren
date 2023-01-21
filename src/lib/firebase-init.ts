@@ -1,5 +1,7 @@
+/* eslint-disable no-new */
 import { initializeApp } from 'firebase/app';
 import {
+  // getFirestore,
   getAuth,
   onAuthStateChanged,
   signOut,
@@ -8,7 +10,18 @@ import {
   AuthErrorCodes,
   signInWithPopup,
   GoogleAuthProvider,
+  updateProfile,
 } from 'firebase/auth';
+import {
+  getFirestore,
+  // getDocs,
+  // onSnapshot,
+  // doc,
+  // deleteDoc,
+  collection,
+  addDoc,
+  // setDoc,
+} from 'firebase/firestore';
 
 // FIREBASE
 
@@ -49,18 +62,30 @@ const errPassword : HTMLElement | any = document.querySelector('#errorPassword')
 const errEmailRegister : HTMLElement | any = document.querySelector('#errorEmailRegister');
 const errPasswordRegister : HTMLElement | any = document.querySelector('#errorPasswordRegister');
 const backLogin : HTMLElement | any = document.querySelector('#backLogin');
+const db = getFirestore(firebaseApp);
+const addUserForm : any = document.querySelector('.register__form');
+const collectionUsers = collection(db, 'user');
+const title = document.querySelector('.title') as HTMLElement;
+const settings = document.querySelector('.settings') as HTMLElement;
+const profiel = document.querySelector('.profiel') as HTMLElement;
+const home = document.querySelector('.home') as HTMLElement;
+const logo = document.querySelector('.logo') as HTMLElement;
 
 // displayen forms
 const showRegister = () => {
   login.style.display = 'none';
   app.style.display = 'none';
   register.style.display = 'block';
+  title.innerHTML = '';
+  settings.style.display = 'none';
 };
 
 const showLogin = () => {
   login.style.display = 'block';
   app.style.display = 'none';
   register.style.display = 'none';
+  title.innerHTML = '';
+  settings.style.display = 'none';
 };
 
 // showApp
@@ -68,13 +93,23 @@ const showApp = () => {
   // usersIngelogd.style.display = 'block';
   login.style.display = 'none';
   app.style.display = 'block';
-  // profiel.style.display = 'none';
+  home.style.display = 'block';
+  profiel.style.display = 'none';
   register.style.display = 'none';
   // chat.style.display = 'none';
   // chats.style.display = 'block';
   // addChats.style.display = 'block';
   // deleteChats.style.display = 'block';
   // inputSearch.style.display = 'block';
+  title.innerHTML = 'Uw projecten';
+};
+
+const showProfiel = () => {
+  title.innerHTML = 'Instellingen';
+  login.style.display = 'none';
+  profiel.style.display = 'block';
+  register.style.display = 'none';
+  home.style.display = 'none';
 };
 
 // Hier gaan we de errors monitoren van de authenticatie
@@ -133,7 +168,7 @@ const showRegisterError = (error : any) => {
 
 const authState : HTMLElement | any = document.querySelector('.authState');
 const showLoginState = (user : any) => {
-  authState.innerHTML = `You're logged in as ${user.email}`;
+  authState.innerHTML = `Ingelogd als ${user.displayName}`;
 };
 
 // AUTH
@@ -141,13 +176,24 @@ const showLoginState = (user : any) => {
 // Signup
 const signupEmail : HTMLElement | any = document.querySelector('#signupEmail');
 const signupPassword : HTMLElement | any = document.querySelector('#signupPassword');
+const signupUsername : HTMLElement | any = document.querySelector('#signupUsername');
 
 const createAccount = async () => {
-  console.log('Account aangemaakt!');
+  // console.log('Account aangemaakt!');
   const email = signupEmail.value;
   const password = signupPassword.value;
+  const gebruikersnaam = signupUsername.value;
   try {
     await createUserWithEmailAndPassword(auth, email, password);
+    updateProfile(auth.currentUser, {
+      displayName: gebruikersnaam,
+    });
+    await addDoc(collectionUsers, {
+      email: signupEmail.value,
+      gebruikersnaam: signupUsername.value,
+      wachtwoord: signupPassword.value,
+    });
+    addUserForm.reset();
   } catch (error) {
     console.log(`There was an error: ${error}`);
     showRegisterError(error);
@@ -155,8 +201,8 @@ const createAccount = async () => {
 };
 
 // Login
-const logEmail : HTMLElement | any = document.querySelector('#signupEmail');
-const logPassword : HTMLElement | any = document.querySelector('#signupPassword');
+const logEmail : HTMLElement | any = document.querySelector('#loginEmail');
+const logPassword : HTMLElement | any = document.querySelector('#loginPassword');
 
 const loginEmailPassword = async () => {
   const loginEmail = logEmail.value;
@@ -173,7 +219,6 @@ const loginEmailPassword = async () => {
 // Login met Google
 const loginGoogle = async () => {
   const provider = new GoogleAuthProvider();
-  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -186,12 +231,12 @@ const loginGoogle = async () => {
     .catch((error) => {
       // Handle Errors here.
       console.log(`There was an error: ${error}`);
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // // The email of the user's account used.
-      // const email = error.customData;
-      // // The AuthCredential type that was used.
-      // const credential = GoogleAuthProvider.credentialFromError(error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
 };
@@ -205,7 +250,7 @@ const logout = async () => {
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log(user);
+      // console.log(user);
       showApp();
       showLoginState(user);
 
@@ -227,3 +272,5 @@ btnLogout?.addEventListener('click', logout);
 btnSignupForm?.addEventListener('click', showRegister);
 backLogin.addEventListener('click', showLogin);
 btnGoogle.addEventListener('click', loginGoogle);
+settings.addEventListener('click', showProfiel);
+logo.addEventListener('click', showApp);

@@ -10,11 +10,11 @@
   <body>
     <div id="app">
       <header>
-        <img src="./logo.svg" alt="logo">
-        <!-- <h1 class="title">STODO</h1> -->
+        <img src="./logo.svg" alt="logo" class="logo">
+        <h1 class="title">Welkom bij uw ToDo app!</h1>
+        <img src="./settings.svg" alt="settings" class="settings">
       </header>
       <div class="auth">
-        <h2>Welkom bij uw ToDo app!</h2>
         <div class="login">
           <h3>Log hier in.</h3>
           <form class="login__form">
@@ -46,6 +46,8 @@
             <label for="signupEmail">Email</label>
             <input type="email" name="email" id="signupEmail" />
             <div id="errorEmailRegister" class="errorlabel">Error message</div>
+            <label for="signupUsername">Gebruikersnaam</label>
+            <input type="text" name="signupUsername" id="signupUsername" />
             <label for="signupPassword">Password</label>
             <input type="password" name="password" id="signupPassword" />
             <div id="errorPasswordRegister" class="errorlabel">Error message</div>
@@ -57,13 +59,18 @@
         </div>
       </div>
       <div class="application">
-        <div class="home"></div>
+        <div class="home">
+          <div id="addTodoListDiv">
+            <input type="text" id="addTodoListInput" class="comment" placeholder="Voeg Project toe">
+            <button id="addTodoListButton" class="btn-save">+</button>
+          </div>
+        </div>
         <div class="profiel">
           <div class="authState"></div>
           <button id="btnLogout" type="button" class="button buttonBlue">Log out</button>
         </div>
       </div>
     </div>
-    <script defer type="module" src="/src/main.ts"></script>
+    <script defer type="module" src="/src/app.ts"></script>
   </body>
 </html>

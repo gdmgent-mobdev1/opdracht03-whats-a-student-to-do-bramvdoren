@@ -18,6 +18,6 @@ export function dropHandler(ev: DragEvent): void {
     ev.preventDefault();
     // Get the id of the target and add the moved element to the target's DOM
     const data = ev.dataTransfer.getData('text/plain');
-    (ev.target as HTMLElement).appendChild(document.querySelector(`#${data}`) as HTMLElement);
+    (ev.target as HTMLElement).appendChild(document.getElementById(`${data}`) as HTMLElement);
   }
 }

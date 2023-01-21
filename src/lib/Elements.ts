@@ -3,6 +3,12 @@
  */
 
 const Elements = {
+  // createButton({ textContent = '', onClick = null }) {
+  //   const button = document.createElement('button');
+  //   button.textContent = textContent;
+  //   if (onClick) button.addEventListener('click', () => { onClick(); });
+  //   return button;
+  // },
   createHeader({
     size = 1, textContent = '',
   }) {
