@@ -67,9 +67,11 @@ export default class Card {
 
     this.p = document.createElement('p');
     this.p.innerText = this.state.text;
+    this.p.classList.add('card__title');
 
     this.deleteButton = document.createElement('button');
     this.deleteButton.innerText = 'X';
+    this.deleteButton.classList.add('card__btnDelete');
     this.deleteButton.addEventListener('click', () => {
       this.deleteCard.call(this);
     });

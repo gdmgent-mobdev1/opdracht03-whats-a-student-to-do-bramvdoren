@@ -62,7 +62,7 @@ export default class TodoList {
     this.input.classList.add('comment');
     this.input.placeholder = 'Voeg opdracht toe';
     this.button = document.createElement('button');
-    this.button.innerText = 'Add';
+    this.button.innerText = '+';
     this.button.classList.add('btn-save');
     this.button.id = 'to-do-list-button';
     this.div = document.createElement('div');

@@ -96,6 +96,7 @@ const showApp = () => {
   home.style.display = 'block';
   profiel.style.display = 'none';
   register.style.display = 'none';
+  settings.style.display = 'block';
   // chat.style.display = 'none';
   // chats.style.display = 'block';
   // addChats.style.display = 'block';
